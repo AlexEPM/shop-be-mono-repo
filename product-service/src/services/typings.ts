@@ -1,4 +1,4 @@
-export type ProductId = string;
+import {Product, ProductId} from '../domain/typings';
 
 export interface ProductDTO {
     id: ProductId,
@@ -9,15 +9,6 @@ export interface ProductDTO {
     img: string,
     rating: number
     count: number,
-}
-
-export interface Product {
-    id: ProductId,
-    title: string,
-    description: string,
-    price: number,
-    img: string,
-    count: number
 }
 
 export interface IProductService {

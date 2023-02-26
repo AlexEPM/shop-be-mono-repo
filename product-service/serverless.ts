@@ -1,11 +1,11 @@
 import type { AWS } from '@serverless/typescript';
 
-import {getProductsList, getProductById, hello, helloGet} from './src/functions';
+import {getProductsList, getProductById} from './src/functions';
 
 const serverlessConfiguration: AWS = {
   service: 'product-service',
   frameworkVersion: '3',
-  plugins: ['serverless-esbuild'],
+  plugins: ['serverless-esbuild', 'serverless-auto-swagger'],
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
@@ -20,7 +20,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { hello, helloGet, getProductsList, getProductById },
+  functions: { getProductsList, getProductById },
   package: { individually: true },
   custom: {
     esbuild: {
@@ -33,6 +33,12 @@ const serverlessConfiguration: AWS = {
       platform: 'node',
       concurrency: 10,
     },
+    autoswagger: {
+      generateSwaggerOnDeploy: false,
+      typefiles: ['./src/domain/typings.ts'],
+      basePath: '/dev',
+      host: 'nae6g042y6.execute-api.eu-west-1.amazonaws.com'
+    }
   },
 };
 

@@ -1,4 +1,5 @@
-import {Product, ProductDTO } from './typings';
+import {ProductDTO } from './typings';
+import {Product} from '../domain/typings';
 
 export interface IProductMapper {
     fromProductDTOtoProduct(productDTO: ProductDTO): Product;

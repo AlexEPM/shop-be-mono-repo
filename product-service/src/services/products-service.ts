@@ -1,6 +1,7 @@
 import { getProducts } from '../mock-utils';
-import { Product, IProductService, ProductId } from './typings';
+import { IProductService } from './typings';
 import {ProductMapper} from './productMapper';
+import {Product, ProductId} from '../domain/typings';
 
 export class ProductsService implements IProductService {
 

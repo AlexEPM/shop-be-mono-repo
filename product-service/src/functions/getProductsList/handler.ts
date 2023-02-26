@@ -1,11 +1,11 @@
 import {middyfy} from '@libs/lambda';
-import type {ValidatedEventAPIGatewayProxyEvent} from '@libs/api-gateway';
+import {APIGatewayProxyResult} from 'aws-lambda';
 import {ProductsService} from '../../services/products-service';
 import {errorResponse, successfulResponse} from '../../utils';
 
 export const productService = new ProductsService();
 
-export const getProductsList: ValidatedEventAPIGatewayProxyEvent<void> = async () => {
+export const getProductsList = async (): Promise<APIGatewayProxyResult> => {
     try {
         const products = await productService.getAllProducts();
 

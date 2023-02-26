@@ -1,15 +1,21 @@
 import { getProducts } from '../mock-utils';
-import { IProduct, IProductService, ProductId } from './typings';
+import { Product, IProductService, ProductId } from './typings';
+import {ProductMapper} from './productMapper';
 
 export class ProductsService implements IProductService {
 
-    getAllProducts(): Promise<IProduct[]> {
-        return Promise.resolve(getProducts());
+    getAllProducts(): Promise<Product[]> {
+        const productsDTO = getProducts();
+        return Promise.resolve(productsDTO.map(
+            (productDTO) => ProductMapper.fromProductDTOtoProduct(productDTO)
+        ));
     }
 
-    getProductById(id: ProductId): Promise<IProduct> {
-        const products = getProducts();
+    getProductById(id: ProductId): Promise<Product> {
+        const productsDTO = getProducts();
+        const productDTO = productsDTO.find( product => product.id === id );
+        const product = ProductMapper.fromProductDTOtoProduct(productDTO);
 
-        return Promise.resolve(products.find( product => product.id === id ));
+        return Promise.resolve(product);
     }
 }

@@ -1,15 +1,26 @@
 export type ProductId = string;
 
-export interface IProduct {
+export interface ProductDTO {
+    id: ProductId,
+    title: string,
+    type: string,
+    description: string,
+    price: number,
+    img: string,
+    rating: number
+    count: number,
+}
+
+export interface Product {
     id: ProductId,
     title: string,
     description: string,
     price: number,
-    logo: string,
-    count: number,
+    img: string,
+    count: number
 }
 
 export interface IProductService {
-    getAllProducts: () => Promise<IProduct[]>,
-    getProductById: (id: ProductId) => Promise<IProduct>,
+    getAllProducts: () => Promise<Product[]>,
+    getProductById: (id: ProductId) => Promise<Product>,
 }

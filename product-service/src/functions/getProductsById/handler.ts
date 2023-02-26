@@ -16,7 +16,7 @@ const getProductsById: ValidatedEventAPIGatewayProxyEvent<void> = async (event) 
             return successfulResponse(product);
         }
 
-        return successfulResponse({ message: 'Product not found' }, 400);
+        return successfulResponse({ message: 'Product not found' }, 404);
     } catch (e) {
         console.log(`getProductsById() error: ${e.message}`);
         console.log(e);

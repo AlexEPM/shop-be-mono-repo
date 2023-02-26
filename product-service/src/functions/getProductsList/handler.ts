@@ -3,7 +3,7 @@ import type {ValidatedEventAPIGatewayProxyEvent} from '@libs/api-gateway';
 import {ProductsService} from '../../services/products-service';
 import {errorResponse, successfulResponse} from '../../utils';
 
-const productService = new ProductsService();
+export const productService = new ProductsService();
 
 export const getProductsList: ValidatedEventAPIGatewayProxyEvent<void> = async () => {
     try {
@@ -17,6 +17,4 @@ export const getProductsList: ValidatedEventAPIGatewayProxyEvent<void> = async (
     }
 };
 
-const main = middyfy(getProductsList);
-
-export { main };
+export const main = middyfy(getProductsList);

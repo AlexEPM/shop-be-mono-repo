@@ -13,8 +13,8 @@ export class ProductsService implements IProductService {
 
     getProductById(id: ProductId): Promise<Product> {
         const productsDTO = getProducts();
-        const productDTO = productsDTO.find( product => product.id === id );
-        const product = ProductMapper.fromProductDTOtoProduct(productDTO);
+        const productDTO = productsDTO.find(product => product.id === id);
+        const product = productDTO ? ProductMapper.fromProductDTOtoProduct(productDTO) : productDTO;
 
         return Promise.resolve(product);
     }

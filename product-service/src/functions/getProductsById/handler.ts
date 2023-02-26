@@ -24,6 +24,4 @@ const getProductsById: ValidatedEventAPIGatewayProxyEvent<void> = async (event) 
     }
 };
 
-const main = middyfy(getProductsById);
-
-export { main };
+export const main = middyfy(getProductsById);

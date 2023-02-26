@@ -6,7 +6,7 @@ export const getProductsById = {
     {
       http: {
         method: 'get',
-        path: 'product/{}'
+        path: '/product/{productId}'
       },
     },
   ],

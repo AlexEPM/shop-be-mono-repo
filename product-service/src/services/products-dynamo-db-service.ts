@@ -1,7 +1,13 @@
-import {IProductService, ProductCreatedReport} from './typings';
+import {IProductService} from './typings';
 import {ProductMapper} from './product-mapper';
 import {Product, ProductId, Stock} from '../domain/typings';
-import {DynamoDBClient, PutItemCommand, QueryCommand, ScanCommand} from '@aws-sdk/client-dynamodb';
+import {
+    DynamoDBClient,
+    QueryCommand,
+    ScanCommand,
+    TransactWriteItemsCommand,
+    TransactWriteItemsCommandOutput
+} from '@aws-sdk/client-dynamodb';
 import {marshall, unmarshall} from '@aws-sdk/util-dynamodb';
 
 import * as process from 'process';
@@ -20,11 +26,23 @@ const getQueryCommandProductById = (tableName: string, idField: string, id: Prod
     return new QueryCommand(queryParams);
 };
 
-const getPutItemCommand = (tableName: string, item: any) => {
-    return new PutItemCommand(
+const getItemsTransactionCommand = (product: Product, stock: Stock) => {
+    return new TransactWriteItemsCommand(
         {
-            TableName: tableName,
-            Item: marshall(item)
+            TransactItems: [
+                {
+                    Put: {
+                        Item: marshall(product),
+                        TableName: process.env.PRODUCTS_TABLE,
+                    },
+                },
+                {
+                    Put: {
+                        Item: marshall(stock),
+                        TableName: process.env.STOCKS_TABLE,
+                    },
+                },
+            ],
         }
     )
 };
@@ -95,20 +113,16 @@ export class ProductsDynamoDbService implements IProductService {
         return undefined;
     }
 
-    async createProduct(product: Product): Promise<ProductCreatedReport> {
+    async createProduct(product: Product): Promise<TransactWriteItemsCommandOutput> {
         const stock: Stock = {
           product_id: product.id,
           count: 0
         };
 
-        const productDBResult = await this.dynamoDBClient.send(
-            getPutItemCommand(process.env.PRODUCTS_TABLE, product)
-        );
+        const createProductTransactionResult =  await this.dynamoDBClient.send(
+            getItemsTransactionCommand(product, stock)
+        )
 
-        const stockDBResult = await this.dynamoDBClient.send(
-            getPutItemCommand(process.env.STOCKS_TABLE, stock)
-        );
-
-        return { productDBResult, stockDBResult };
+        return createProductTransactionResult;
     }
 }

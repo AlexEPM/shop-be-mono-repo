@@ -49,7 +49,7 @@ export class ProductsDynamoDbService implements IProductService {
 
         const commonResult = productsResult.map((productItem) => {
             const stock = stocksResult.find((stockItem) =>
-                stockItem.id === productItem.id);
+                stockItem.product_id === productItem.id);
 
             if (stock) {
                 return {

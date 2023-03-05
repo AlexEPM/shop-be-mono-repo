@@ -1,0 +1,85 @@
+{
+	"products": [
+		{
+			"PutRequest": {
+                "Item": {
+					 "id": {
+                        "S": "ab296ea0-59c5-4287-9618-a79350b9a0a4"
+                    },
+					 "title": {
+                        "S": "Brown eggs"
+                    },
+					 "type": {
+                        "S": "dairy"
+                    },
+					 "description": {
+                        "S": "Raw organic brown eggs in a basket"
+                    },
+					 "img": {
+                        "S": "https://m.media-amazon.com/images/I/61UoG78Yg5L._AC_UL480_FMwebp_QL65_.jpg"
+                    },
+					"price": {
+                        "N": "28.1"
+                    },
+					"rating": {
+                        "N": "4"
+                    }
+				}
+			}
+		},
+		{
+			"PutRequest": {
+                "Item": {
+					 "id": {
+                        "S": "0b122c89-d413-47a4-a024-c9b85c3cc4d3"
+                    },
+					 "title": {
+                        "S": "Sweet fresh strawberry"
+                    },
+					 "type": {
+                        "S": "fruit"
+                    },
+					 "description": {
+                        "S": "Sweet fresh strawberry on the wooden table"
+                    },
+					 "img": {
+                        "S": "https://m.media-amazon.com/images/I/71VSEKoK5RL._AC_UL480_FMwebp_QL65_.jpg"
+                    },
+					"price": {
+                        "N": "29.45"
+                    },
+					"rating": {
+                        "N": "4"
+                    }
+				}
+			}
+		},
+		{
+			"PutRequest": {
+                "Item": {
+					 "id": {
+                        "S": "0ed8e28a-1833-4e3b-bab3-acec97a4c2de"
+                    },
+					 "title": {
+                        "S": "Green smoothie"
+                    },
+					 "type": {
+                        "S": "dairy"
+                    },
+					 "description": {
+                        "S": "Glass of green smoothie with quail egg's yolk, served with cocktail tube, green apple and baby spinach leaves over tin surface."
+                    },
+					 "img": {
+                        "S": "https://m.media-amazon.com/images/I/81DXFaDmO9L._AC_UL480_FMwebp_QL65_.jpg"
+                    },
+					"price": {
+                        "N": "17.68"
+                    },
+					"rating": {
+                        "N": "4"
+                    }
+				}
+			}
+		}
+	]
+}

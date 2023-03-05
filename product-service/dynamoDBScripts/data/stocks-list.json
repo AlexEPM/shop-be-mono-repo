@@ -1,0 +1,40 @@
+{
+	"stocks": [
+		{
+			"PutRequest": {
+                "Item": {
+					 "product_id": {
+                        "S": "ab296ea0-59c5-4287-9618-a79350b9a0a4"
+                    },
+					"count": {
+                        "N": "61"
+                    }
+				}
+			}
+		},
+		{
+			"PutRequest": {
+                "Item": {
+					 "product_id": {
+                        "S": "0b122c89-d413-47a4-a024-c9b85c3cc4d3"
+                    },
+					"count": {
+                        "N": "33"
+                    }
+				}
+			}
+		},
+		{
+			"PutRequest": {
+                "Item": {
+					 "product_id": {
+                        "S": "0ed8e28a-1833-4e3b-bab3-acec97a4c2de"
+                    },
+					"count": {
+                        "N": "15"
+                    }
+				}
+			}
+		}
+	]
+}

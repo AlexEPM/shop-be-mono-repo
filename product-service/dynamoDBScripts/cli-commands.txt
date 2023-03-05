@@ -1,0 +1,12 @@
+aws dynamodb create-table --cli-input-json file://create-products-table.json --region eu-west-1
+aws dynamodb create-table --cli-input-json file://create-stacks-table.json --region eu-west-1
+
+aws dynamodb batch-write-item \
+    --request-items file://data/products-list.json \
+    --return-consumed-capacity INDEXES \
+    --return-item-collection-metrics SIZE
+
+aws dynamodb batch-write-item \
+    --request-items file://data/stoks-list.json \
+    --return-consumed-capacity INDEXES \
+    --return-item-collection-metrics SIZE

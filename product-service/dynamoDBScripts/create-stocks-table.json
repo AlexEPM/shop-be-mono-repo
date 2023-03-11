@@ -1,0 +1,26 @@
+{
+    "TableName": "stocks",
+    "KeySchema": [
+      { "AttributeName": "product_id", "KeyType": "HASH" }
+    ],
+    "AttributeDefinitions": [
+      { "AttributeName": "product_id", "AttributeType": "S" }
+    ],
+	"BillingMode": "PROVISIONED",
+    "ProvisionedThroughput": {
+      "ReadCapacityUnits": 5,
+      "WriteCapacityUnits": 5
+    },
+	"StreamSpecification": {
+		"StreamEnabled": false
+	},
+	"SSESpecification": {
+		"Enabled": false
+	},
+	"Tags": [
+		{
+			"Key": "STAGE",
+			"Value": "Zero"
+		}
+	]
+}

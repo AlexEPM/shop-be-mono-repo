@@ -8,3 +8,8 @@ export interface Product {
     img: string,
     count: number
 }
+
+export interface Stock {
+    product_id: ProductId,
+    count: number
+}

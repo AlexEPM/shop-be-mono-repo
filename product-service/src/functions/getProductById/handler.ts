@@ -1,13 +1,15 @@
 import {middyfy} from '@libs/lambda';
 
-import {ProductsService} from '../../services/products-service';
-import {errorResponse, successfulResponse} from '../../utils';
+import {ProductsDynamoDbService} from '../../services/products-dynamo-db-service';
+import {addRequestToLog, errorResponse, successfulResponse} from '../../utils';
 import {APIGatewayProxyEvent, APIGatewayProxyResult} from 'aws-lambda';
 
-export const productService = new ProductsService();
+export const productService = new ProductsDynamoDbService();
 
 export const getProductById = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     try {
+        addRequestToLog(event);
+
         const { productId } = event.pathParameters;
 
         const product = await productService.getProductById(productId);

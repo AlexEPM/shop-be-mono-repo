@@ -1,12 +1,11 @@
-import {ProductDTO } from './typings';
 import {Product} from '../domain/typings';
 
 export interface IProductMapper {
-    fromProductDTOtoProduct(productDTO: ProductDTO): Product;
+    fromProductDTOtoProduct(productDTO: any): Product;
 }
 
 
-export const fromProductDTOtoProduct = (productDTO: ProductDTO): Product => {
+export const fromProductDTOtoProduct = (productDTO: any): Product => {
     const {
         id,
         title,

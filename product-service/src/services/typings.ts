@@ -1,17 +1,9 @@
 import {Product, ProductId} from '../domain/typings';
-
-export interface ProductDTO {
-    id: ProductId,
-    title: string,
-    type: string,
-    description: string,
-    price: number,
-    img: string,
-    rating: number
-    count: number,
-}
+import {DynamoDBClient, TransactWriteItemsCommandOutput} from '@aws-sdk/client-dynamodb';
 
 export interface IProductService {
+    dynamoDBClient: DynamoDBClient;
     getAllProducts: () => Promise<Product[]>,
     getProductById: (id: ProductId) => Promise<Product>,
+    createProduct: (product: Product) => Promise<TransactWriteItemsCommandOutput>
 }

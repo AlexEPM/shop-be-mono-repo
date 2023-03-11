@@ -1,0 +1,28 @@
+{
+    "TableName": "products",
+    "KeySchema": [
+      { "AttributeName": "id", "KeyType": "HASH" },
+      { "AttributeName": "title", "KeyType": "RANGE" }
+    ],
+    "AttributeDefinitions": [
+      { "AttributeName": "id", "AttributeType": "S" },
+      { "AttributeName": "title", "AttributeType": "S" }
+    ],
+	"BillingMode": "PROVISIONED",
+    "ProvisionedThroughput": {
+      "ReadCapacityUnits": 5,
+      "WriteCapacityUnits": 5
+    },
+	"StreamSpecification": {
+		"StreamEnabled": false
+	},
+	"SSESpecification": {
+		"Enabled": false
+	},
+	"Tags": [
+		{
+			"Key": "STAGE",
+			"Value": "Zero"
+		}
+	]
+}

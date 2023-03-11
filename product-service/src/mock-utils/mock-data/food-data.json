@@ -1,0 +1,142 @@
+[
+  {
+    "id": "ab296ea0-59c5-4287-9618-a79350b9a0a4",
+    "title": "Brown eggs",
+    "type": "dairy",
+    "description": "Raw organic brown eggs in a basket",
+    "img": "https://m.media-amazon.com/images/I/61UoG78Yg5L._AC_UL480_FMwebp_QL65_.jpg",
+    "price": 28.1,
+    "rating": 4,
+    "count": 61
+  },
+  {
+    "id": "0b122c89-d413-47a4-a024-c9b85c3cc4d3",
+    "title": "Sweet fresh strawberry",
+    "type": "fruit",
+    "description": "Sweet fresh strawberry on the wooden table",
+    "img": "https://m.media-amazon.com/images/I/71VSEKoK5RL._AC_UL480_FMwebp_QL65_.jpg",
+    "price": 29.45,
+    "rating": 4,
+    "count": 33
+  },
+  {
+    "id": "0ed8e28a-1833-4e3b-bab3-acec97a4c2de",
+    "title": "Green smoothie",
+    "type": "dairy",
+    "description": "Glass of green smoothie with quail egg's yolk, served with cocktail tube, green apple and baby spinach leaves over tin surface.",
+    "img": "https://m.media-amazon.com/images/I/81DXFaDmO9L._AC_UL480_FMwebp_QL65_.jpg",
+    "price": 17.68,
+    "rating": 4,
+    "count": 15
+  },
+  {
+    "id": "7be96441-851b-464e-a3a9-32cf80a4a6b7",
+    "title": "Raw legums",
+    "type": "vegetable",
+    "description": "Raw legums on the wooden table",
+    "img": "https://m.media-amazon.com/images/I/913EYAKMqVL._AC_UL480_FMwebp_QL65_.jpg",
+    "price": 17.11,
+    "rating": 2,
+    "count": 156
+  },
+  {
+    "id": "e107271c-2ba6-406a-94ba-14352e87c149",
+    "title": "Pesto with basil",
+    "type": "vegetable",
+    "description": "Italian traditional pesto with basil, chesse and oil",
+    "img": "https://m.media-amazon.com/images/I/619Gi6TOlUL._AC_UL480_FMwebp_QL65_.jpg",
+    "price": 18.19,
+    "rating": 2,
+    "count": 98
+  },
+  {
+    "id": "8ab9feca-a2aa-4823-8423-6bc4987f4c76",
+    "title": "Lemon and salt",
+    "type": "fruit",
+    "description": "Rosemary, lemon and salt on the table",
+    "img": "https://m.media-amazon.com/images/I/616DlKmyqQL._AC_UL480_FMwebp_QL65_.jpg",
+    "price": 15.79,
+    "rating": 5,
+    "count": 25
+  },
+  {
+    "id": "23e0911e-f30f-4848-bc44-52c96e8f471e",
+    "title": "Homemade bread",
+    "type": "bakery",
+    "description": "Homemade bread",
+    "img": "https://m.media-amazon.com/images/I/81Zb4ZUW2GL._AC_UL480_FMwebp_QL65_.jpg",
+    "price": 17.48,
+    "rating": 3,
+    "count": 21
+  },
+  {
+    "id": "59e3e9c1-9eca-4a52-9943-9a94f882c657",
+    "title": "Fresh tomato",
+    "type": "vegetable",
+    "description": "Fresh tomato juice with basil",
+    "img": "https://m.media-amazon.com/images/I/81yTejc5QzL._AC_UL480_FMwebp_QL65_.jpg",
+    "price": 16.3,
+    "rating": 2,
+    "count": 40
+  },
+  {
+    "id": "5068961f-886d-4667-8ec9-00fd1ce23704",
+    "title": "Green beans",
+    "type": "vegetable",
+    "description": "Raw organic green beans ready to eat",
+    "img": "https://m.media-amazon.com/images/I/51j2KvemTHL._AC_.jpg",
+    "price": 28.79,
+    "rating": 1,
+    "count": 36
+  },
+  {
+    "id": "b01e37e6-9b77-42f7-8419-863fa14664eb",
+    "title": "Strawberry jelly",
+    "type": "fruit",
+    "description": "Homemade organic strawberry jelly in a jar",
+    "img": "https://m.media-amazon.com/images/I/91B-8ElOEWL._AC_UL480_FMwebp_QL65_.jpg",
+    "price": 14.18,
+    "rating": 1,
+    "count": 53
+  },
+  {
+    "id": "d1d4795a-7196-46c3-916e-89956a3a4f47",
+    "title": "Pears juice",
+    "type": "fruit",
+    "description": "Fresh pears juice on the wooden table",
+    "img": "https://m.media-amazon.com/images/I/61ol02ztu0L._AC_UL480_FMwebp_QL65_.jpg",
+    "price": 19.49,
+    "rating": 4,
+    "count": 48
+  },
+  {
+    "id": "dd48eced-943b-4e71-8ba8-8dbad7a3502f",
+    "title": "Fresh pears",
+    "type": "fruit",
+    "description": "Sweet fresh pears on the wooden table",
+    "img": "https://m.media-amazon.com/images/I/81JHNFzNHwL._AC_UL480_FMwebp_QL65_.jpg",
+    "price": 15.12,
+    "rating": 5,
+    "count": 18
+  },
+  {
+    "id": "ab9c5039-fad1-40c7-ac97-4a31a2925768",
+    "title": "Oranges",
+    "type": "fruit",
+    "description": "Orange popsicle ice cream bars made from fresh oranges.  a refreshing summer treat.",
+    "img": "https://m.media-amazon.com/images/I/51fqeBlS0nL._AC_.jpg",
+    "price": 21.48,
+    "rating": 4,
+    "count": 44
+  },
+  {
+    "id": "ef4d3e3d-0ef2-4af9-830d-8ea274dc234f",
+    "title": "Honey",
+    "type": "bakery",
+    "description": "Honey and honeycell on the table",
+    "img": "https://m.media-amazon.com/images/I/715SFC+TU3L._AC_UL480_FMwebp_QL65_.jpg",
+    "price": 17.01,
+    "rating": 2,
+    "count": 37
+  }
+]

@@ -8,6 +8,7 @@ export const successfulResponse = (responseData: any, status?: number) => {
 }
 
 export const errorResponse = (error: Error, status?: number) => {
+    console.log(error);
     return {
         statusCode: status || 500,
         body: JSON.stringify( { message: error.message || DEFAULT_ERROR_MESSAGE })

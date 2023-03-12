@@ -1,4 +1,4 @@
-import {middyfy} from '@libs/lambda';
+import {middyfy} from '../../libs/lambda';
 import {APIGatewayProxyEvent, APIGatewayProxyResult} from 'aws-lambda';
 import {ProductsDynamoDbService} from '../../services/products-dynamo-db-service';
 import {addRequestToLog, errorResponse, successfulResponse, validateProductStructure} from '../../utils';

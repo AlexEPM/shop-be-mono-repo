@@ -3,6 +3,7 @@ import {APIGatewayProxyEvent} from 'aws-lambda';
 export const addRequestToLog = ({
                                     requestContext: { path, httpMethod, accountId },
                                     pathParameters,
+                                    queryStringParameters,
                                     body
                                 }: APIGatewayProxyEvent)=> {
     console.log(
@@ -11,6 +12,7 @@ export const addRequestToLog = ({
             method: httpMethod,
             accountId,
             pathParameters,
+            queryStringParameters,
             body
         }
     );

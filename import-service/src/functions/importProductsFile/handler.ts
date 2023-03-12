@@ -1,15 +1,25 @@
-import {middyfy} from '@libs/lambda';
+import {middyfy} from '../../libs';
 import {APIGatewayProxyEvent, APIGatewayProxyResult} from 'aws-lambda';
 import {PutObjectCommand, PutObjectCommandInput, S3Client} from '@aws-sdk/client-s3';
 import * as process from 'process';
-import {errorResponse, successfulResponse} from '@libs/response-utils';
-import {addRequestToLog} from '@libs/log-utils';
+import {errorResponse, successfulResponse} from '../../libs/response-utils';
+import {addRequestToLog} from '../../libs/log-utils';
 import {getSignedUrl} from '@aws-sdk/s3-request-presigner';
 
-const importProductsFile = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-  addRequestToLog(event)
+export const importProductsFile = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+  addRequestToLog(event);
 
-  const { name } = event.queryStringParameters;
+  const queryStringParameters = event.queryStringParameters;
+
+  if (!queryStringParameters || !queryStringParameters.name) {
+    return errorResponse(new Error('Bad Request: Query parameter "name" not found'), 400);
+  }
+
+  if (!process.env.BUCKET || !process.env.REGION) {
+    return errorResponse(new Error('Internal Server Error: environment variables are not specified'));
+  }
+
+  const { name } = queryStringParameters;
 
   const s3Client = new S3Client({region: process.env.REGION});
 
@@ -25,7 +35,7 @@ const importProductsFile = async (event: APIGatewayProxyEvent): Promise<APIGatew
     const signedUrl = await getSignedUrl(s3Client, command, { expiresIn: 60 });
 
     return successfulResponse(signedUrl);
-  }catch (e) {
+  } catch (e) {
     return errorResponse(e);
   }
 };

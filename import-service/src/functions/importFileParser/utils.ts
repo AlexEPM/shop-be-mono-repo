@@ -24,15 +24,15 @@ export const executeFileParse = async (s3Client: S3Client, bucket: string, key: 
         const parser = parse({
             comment: "#",
             columns: true,
-            relax_quotes: true,
+            relaxQuotes: true,
             escape: "\\",
             quote: "'",
             delimiter: ",",
             ltrim: true,
             rtrim: true,
-            record_delimiter: "\n",
-            skip_empty_lines: true,
-            relax_column_count: true
+            recordDelimiter: "\n",
+            skipEmptyLines: true,
+            relaxColumnCount: true
         });
 
         const file = await s3Client.send(getObjectCommand);

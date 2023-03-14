@@ -5,12 +5,13 @@ import middy from '@middy/core';
 import * as console from 'console';
 import {copyParsedFile, deleteParsedFile, executeFileParse} from './utils';
 
+const s3Client = new S3Client({region: process.env.REGION});
+const bucket = process.env.BUCKET;
+
 const importFileParser = async (event: S3CreateEvent) => {
     console.log('importFileParser event: ', event);
 
     const key = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, ' '));
-    const s3Client = new S3Client({region: process.env.REGION});
-    const bucket = process.env.BUCKET;
 
     try {
         await executeFileParse(s3Client, bucket, key);

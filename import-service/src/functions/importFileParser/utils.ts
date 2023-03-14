@@ -55,30 +55,28 @@ export const executeFileParse = async (s3Client: S3Client, bucket: string, key: 
 };
 
 export const copyParsedFile = async (s3Client: S3Client, bucket: string, key: string) => {
-    return new Promise<void>(async (resolve) => {
-        const copyObjectCommandInput: CopyObjectCommandInput = {
-            Bucket: bucket,
-            CopySource: `${bucket}/${key}`,
-            Key: key.replace('uploaded', 'parsed')
-        };
+    const copyObjectCommandInput: CopyObjectCommandInput = {
+        Bucket: bucket,
+        CopySource: `${bucket}/${key}`,
+        Key: key.replace('uploaded', 'parsed')
+    };
 
-        const copyObjectCommand = new CopyObjectCommand(copyObjectCommandInput);
+    const copyObjectCommand = new CopyObjectCommand(copyObjectCommandInput);
 
-        await s3Client.send(copyObjectCommand);
-        resolve();
-    });
+    await s3Client.send(copyObjectCommand);
+
+    return Promise.resolve();
 };
 
 export const deleteParsedFile = async (s3Client: S3Client, bucket: string, key: string) => {
-    return new Promise<void>(async (resolve) => {
-        const deleteObjectCommandInput: DeleteObjectCommandInput = {
-            Bucket: bucket,
-            Key: key
-        };
+    const deleteObjectCommandInput: DeleteObjectCommandInput = {
+        Bucket: bucket,
+        Key: key
+    };
 
-        const deleteObjectCommand = new DeleteObjectCommand(deleteObjectCommandInput);
+    const deleteObjectCommand = new DeleteObjectCommand(deleteObjectCommandInput);
 
-        await s3Client.send(deleteObjectCommand);
-        resolve();
-    });
+    await s3Client.send(deleteObjectCommand);
+
+    return Promise.resolve();
 };

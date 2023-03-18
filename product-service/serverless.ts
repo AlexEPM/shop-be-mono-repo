@@ -1,7 +1,12 @@
-import type { AWS } from '@serverless/typescript';
+import type {AWS} from '@serverless/typescript';
 
-import {getProductsList, getProductById, createProduct} from './src/functions';
-import { dataTables } from './src/tables';
+import {
+  catalogBatchProcess,
+  createProduct,
+  getProductById,
+  getProductsList
+} from './src/functions';
+import {resources} from './src/resources';
 import * as process from "process";
 
 const serverlessConfiguration: AWS = {
@@ -25,7 +30,10 @@ const serverlessConfiguration: AWS = {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
       PRODUCTS_TABLE_NAME: process.env.PRODUCTS_TABLE,
-      STOCKS_TABLE_NAME: process.env.STOCKS_TABLE
+      STOCKS_TABLE_NAME: process.env.STOCKS_TABLE,
+      SNS_ARN: {
+        Ref: 'SNSTopic'
+      }
     },
     iamRoleStatements: [
       {
@@ -42,10 +50,25 @@ const serverlessConfiguration: AWS = {
         Resource: [
           'arn:aws:dynamodb:${self:provider.region}:*:table/*'
         ]
+      },
+      {
+        Effect: 'Allow',
+        Action: ['sns:Publish'],
+        Resource: ['arn:aws:sns:eu-west-1:703693988437:createProductTopic']
+      },
+      {
+        Effect: 'Allow',
+        Action: ['sqs:SendMessage'],
+        Resource: ['arn:aws:sqs:eu-west-1:703693988437:catalogItemsQueue.fifo']
       }
-    ]
+    ],
   },
-  functions: { getProductsList, getProductById, createProduct },
+  functions: {
+    getProductsList,
+    getProductById,
+    createProduct,
+    catalogBatchProcess
+  },
   package: { individually: true },
   custom: {
     esbuild: {
@@ -66,7 +89,7 @@ const serverlessConfiguration: AWS = {
     }
   },
   resources: {
-    Resources: dataTables,
+    Resources: resources,
   }
 };
 

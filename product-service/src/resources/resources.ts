@@ -1,4 +1,4 @@
-export const dataTables = {
+export const resources = {
     ProductsTable: {
         Type: 'AWS::DynamoDB::Table',
         Properties: {
@@ -43,6 +43,50 @@ export const dataTables = {
                     Value: "Zero"
                 }
             ]
+        }
+    },
+    SQSQueue: {
+        Type: 'AWS::SQS::Queue',
+        Properties: {
+            QueueName: 'catalogItemsQueue.fifo',
+            ContentBasedDeduplication: true,
+            FifoQueue: true,
+            DelaySeconds: 0,
+            MaximumMessageSize: 262144,
+            MessageRetentionPeriod: 1209600,
+            ReceiveMessageWaitTimeSeconds: 20,
+            VisibilityTimeout: 170
+        }
+    },
+    SNSTopic: {
+        Type: 'AWS::SNS::Topic',
+        Properties: {
+            TopicName: 'createProductTopic'
+        }
+    },
+    SNSCommonSubscription: {
+        Type: 'AWS::SNS::Subscription',
+        Properties: {
+            Endpoint: 'oleksandr_balabanov@epam.com',
+            Protocol: 'email',
+            TopicArn: {
+                Ref: 'SNSTopic'
+            }
+        }
+    },
+    SNSBakerySubscription: {
+        Type: 'AWS::SNS::Subscription',
+        Properties: {
+            Endpoint: 'test.aws002200@gmail.com',
+            Protocol: 'email',
+            TopicArn: {
+                Ref: 'SNSTopic'
+            },
+            FilterPolicyScope: 'MessageAttributes',
+            FilterPolicy: {
+                'type': ['bakery'],
+                'price': [{'numeric': ['>=', 15]}]
+            }
         }
     }
 }

@@ -10,12 +10,14 @@
     "deploy:getProductsList": "sls deploy function -f getProductsList",
     "deploy:getProductById": "sls deploy function -f getProductById",
     "deploy:createProduct": "sls deploy function -f createProduct",
+    "deploy:catalogBatchProcess": "sls deploy function -f catalogBatchProcess",
     "remove:dev-stack": "sls remove --stage dev --region eu-west-1"
   },
   "engines": {
     "node": ">=14.15.0"
   },
   "dependencies": {
+    "@aws-sdk/client-sns": "^3.292.0",
     "@middy/core": "^3.4.0",
     "@middy/http-json-body-parser": "^3.4.0"
   },

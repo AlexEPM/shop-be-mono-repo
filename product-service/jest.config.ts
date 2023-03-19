@@ -1,6 +1,8 @@
 export default {
   clearMocks: true,
   moduleFileExtensions: [
+    "js",
+    "ts",
     "json",
     "node"
   ],

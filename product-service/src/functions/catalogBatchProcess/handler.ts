@@ -1,4 +1,4 @@
-import middy from '@middy/core';
+//import middy from '@middy/core';
 import {SQSEvent, SQSHandler} from 'aws-lambda';
 import {validateProductStructure} from '../../utils';
 import {v4 as uuid} from 'uuid';
@@ -8,7 +8,7 @@ import {sendNotifications} from './helper';
 import {ProductsDynamoDbService} from '../../services/products-dynamo-db-service';
 
 export const productService = new ProductsDynamoDbService();
-const snsClient = new SNSClient({ region: process.env.REGION });
+export const snsClient = new SNSClient({ region: process.env.REGION });
 
 export const catalogBatchProcess: SQSHandler = async (event: SQSEvent) => {
     try {
@@ -35,4 +35,4 @@ export const catalogBatchProcess: SQSHandler = async (event: SQSEvent) => {
     }
 };
 
-export const main = middy(catalogBatchProcess);
+//export const main = middy(catalogBatchProcess);

@@ -54,12 +54,7 @@ const serverlessConfiguration: AWS = {
       {
         Effect: 'Allow',
         Action: ['sns:Publish'],
-        Resource: ['arn:aws:sns:eu-west-1:703693988437:createProductTopic']
-      },
-      {
-        Effect: 'Allow',
-        Action: ['sqs:SendMessage'],
-        Resource: ['arn:aws:sqs:eu-west-1:703693988437:catalogItemsQueue.fifo']
+        Resource: { Ref: 'SNSTopic' }
       }
     ],
   },

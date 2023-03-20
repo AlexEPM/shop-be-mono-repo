@@ -24,7 +24,7 @@ const serverlessConfiguration: AWS = {
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
       REGION: process.env.REGION,
       BUCKET: process.env.BUCKET,
-      QUEUE_URL: 'https://sqs.eu-west-1.amazonaws.com/703693988437/catalogItemsQueue.fifo'
+      QUEUE_URL: 'https://sqs.${self:provider.region}.amazonaws.com/${aws:accountId}/catalogItemsQueue.fifo'
     },
     iamRoleStatements: [
       {
@@ -36,7 +36,12 @@ const serverlessConfiguration: AWS = {
         Effect: 'Allow',
         Action: ['s3:*'],
         Resource: ['arn:aws:s3:::files-upload-bucket/*']
-      }
+      },
+      {
+        Effect: 'Allow',
+        Action: 'sqs:SendMessage',
+        Resource: ['arn:aws:sqs:${self:provider.region}:${aws:accountId}:catalogItemsQueue.fifo']
+      },
     ]
   },
   functions: { importProductsFile, importFileParser },

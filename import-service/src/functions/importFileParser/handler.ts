@@ -14,7 +14,6 @@ const sqsClient = new SQSClient({ region });
 
 const importFileParser = async (event: S3CreateEvent) => {
     console.log('importFileParser event: ', event);
-    console.log('process.env.QUEUE_URL: ', process.env.QUEUE_URL);
 
     const key = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, ' '));
 

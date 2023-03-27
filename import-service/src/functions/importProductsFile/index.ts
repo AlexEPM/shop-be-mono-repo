@@ -10,9 +10,10 @@ export const importProductsFile = {
         cors: true,
         authorizer: {
           identitySource: 'method.request.header.Authorization',
+          identityValidationExpression: '^Basic [-0-9a-zA-Z\\._]*$',
           resultTtlInSeconds: 0,
           arn: '${self:provider.environment.AUTHORIZER_ARN}',
-          type: 'token'
+          type: 'token',
         },
       },
     },

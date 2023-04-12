@@ -2,10 +2,12 @@ import type { AWS } from '@serverless/typescript';
 import {importProductsFile} from '@functions/importProductsFile';
 import * as process from 'process';
 import {importFileParser} from '@functions/importFileParser';
+import {authorizationApiGateway} from './src/resources';
 
 const serverlessConfiguration: AWS = {
   service: 'import-service',
   frameworkVersion: '3',
+  useDotenv: true,
   plugins: [
     'serverless-esbuild',
     'serverless-dotenv-plugin',
@@ -15,6 +17,7 @@ const serverlessConfiguration: AWS = {
     name: 'aws',
     runtime: 'nodejs14.x',
     region: 'eu-west-1',
+    stage: 'dev',
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
@@ -24,7 +27,8 @@ const serverlessConfiguration: AWS = {
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
       REGION: process.env.REGION,
       BUCKET: process.env.BUCKET,
-      QUEUE_URL: 'https://sqs.${self:provider.region}.amazonaws.com/${aws:accountId}/catalogItemsQueue.fifo'
+      QUEUE_URL: 'https://sqs.${self:provider.region}.amazonaws.com/${aws:accountId}/${env:SQS_NAME}',
+      AUTHORIZER_ARN: 'arn:aws:lambda:${self:provider.region}:${aws:accountId}:function:${env:AUTHORIZATION_SERVICE_NAME}-${opt:stage, self:provider.stage}-${env:AUTHORIZER_NAME}'
     },
     iamRoleStatements: [
       {
@@ -61,6 +65,11 @@ const serverlessConfiguration: AWS = {
       generateSwaggerOnDeploy: false,
       basePath: '/dev',
       host: 'emcyw15lh2.execute-api.eu-west-1.amazonaws.com'
+    }
+  },
+  resources: {
+    Resources: {
+      ...authorizationApiGateway
     }
   }
 };

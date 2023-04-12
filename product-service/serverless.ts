@@ -1,21 +1,18 @@
 import type {AWS} from '@serverless/typescript';
 
-import {
-  catalogBatchProcess,
-  createProduct,
-  getProductById,
-  getProductsList
-} from './src/functions';
-import {resources} from './src/resources';
+import {catalogBatchProcess, createProduct, getProductById, getProductsList} from './src/functions';
+import {sns, sqs, tables} from './src/resources';
 import * as process from "process";
 
 const serverlessConfiguration: AWS = {
   service: 'product-service',
   frameworkVersion: '3',
+  useDotenv: true,
   plugins: [
     'serverless-esbuild',
     'serverless-auto-swagger',
-    'serverless-dotenv-plugin'
+    'serverless-dotenv-plugin',
+    'serverless-offline'
   ],
   provider: {
     name: 'aws',
@@ -84,7 +81,11 @@ const serverlessConfiguration: AWS = {
     }
   },
   resources: {
-    Resources: resources,
+    Resources: {
+      ...tables,
+      ...sqs,
+      ...sns
+    }
   }
 };
 

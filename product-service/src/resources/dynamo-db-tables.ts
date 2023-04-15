@@ -1,15 +1,15 @@
-export const dataTables = {
+export const tables = {
     ProductsTable: {
         Type: 'AWS::DynamoDB::Table',
         Properties: {
             TableName: 'products',
             AttributeDefinitions: [
-                { AttributeName: 'id', AttributeType: 'S' },
-                { AttributeName: 'title', AttributeType: 'S' },
+                {AttributeName: 'id', AttributeType: 'S'},
+                {AttributeName: 'title', AttributeType: 'S'},
             ],
             KeySchema: [
-                { AttributeName: 'id', KeyType: 'HASH' },
-                { AttributeName: 'title', KeyType: 'RANGE' },
+                {AttributeName: 'id', KeyType: 'HASH'},
+                {AttributeName: 'title', KeyType: 'RANGE'},
             ],
             ProvisionedThroughput: {
                 ReadCapacityUnits: '5',
@@ -28,10 +28,10 @@ export const dataTables = {
         Properties: {
             TableName: 'stocks',
             AttributeDefinitions: [
-                { AttributeName: 'product_id', AttributeType: 'S' }
+                {AttributeName: 'product_id', AttributeType: 'S'}
             ],
             KeySchema: [
-                { AttributeName: 'product_id', KeyType: 'HASH' }
+                {AttributeName: 'product_id', KeyType: 'HASH'}
             ],
             ProvisionedThroughput: {
                 ReadCapacityUnits: '5',
@@ -45,4 +45,4 @@ export const dataTables = {
             ]
         }
     }
-}
+};

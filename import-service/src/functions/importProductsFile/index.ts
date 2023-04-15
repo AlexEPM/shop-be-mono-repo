@@ -1,4 +1,4 @@
-import { handlerPath } from '@libs/handler-resolver';
+import {handlerPath} from '@libs/handler-resolver';
 
 export const importProductsFile = {
   handler: `${handlerPath(__dirname)}/handler.main`,
@@ -6,7 +6,15 @@ export const importProductsFile = {
     {
       http: {
         method: 'get',
-        path: 'import'
+        path: 'import',
+        cors: true,
+        authorizer: {
+          identitySource: 'method.request.header.Authorization',
+          identityValidationExpression: '^Basic [-0-9a-zA-Z\\._]*$',
+          resultTtlInSeconds: 0,
+          arn: '${self:provider.environment.AUTHORIZER_ARN}',
+          type: 'token',
+        },
       },
     },
   ],

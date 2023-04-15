@@ -3,7 +3,7 @@ import {APIGatewayProxyEvent, APIGatewayProxyResult} from 'aws-lambda';
 import {ProductsDynamoDbService} from '../../services/products-dynamo-db-service';
 import {addRequestToLog, errorResponse, successfulResponse, validateProductStructure} from '../../utils';
 import {Product} from '../../domain/typings';
-import {uuid} from 'uuidv4';
+import {v4 as uuid} from 'uuid';
 
 export const productService = new ProductsDynamoDbService();
 
@@ -20,15 +20,7 @@ export const createProduct = async (event: APIGatewayProxyEvent): Promise<APIGat
             ), 400);
         }
 
-        if (newProduct.id) {
-            const existingProduct = await productService.getProductById(newProduct.id);
-
-            if (existingProduct) {
-                return errorResponse(new Error(`Product with id '${newProduct.id}' already exists!`), 400);
-            }
-        } else {
-            newProduct.id = uuid();
-        }
+        newProduct.id = uuid();
 
         const createProductResult = await productService.createProduct(newProduct);
 

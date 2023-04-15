@@ -10,8 +10,15 @@ import {
 import {parse} from 'csv-parse';
 import {Readable} from 'stream';
 import * as console from 'console';
+import {SendMessageCommand, SQSClient} from '@aws-sdk/client-sqs';
 
-export const executeFileParse = async (s3Client: S3Client, bucket: string, key: string) => {
+export const executeFileParse = async (
+    s3Client: S3Client,
+    bucket: string,
+    key: string,
+    sqsClient: SQSClient,
+    queueUrl: string
+) => {
     return new Promise<void>(async (resolve, reject) => {
         const getObjectCommandInput: GetObjectCommandInput = {
             Bucket: bucket,
@@ -22,16 +29,10 @@ export const executeFileParse = async (s3Client: S3Client, bucket: string, key: 
         const getObjectCommand = new GetObjectCommand(getObjectCommandInput);
 
         const parser = parse({
-            comment: "#",
             columns: true,
             relaxQuotes: true,
-            escape: "\\",
-            quote: "'",
+            quote: '"',
             delimiter: ",",
-            ltrim: true,
-            rtrim: true,
-            recordDelimiter: "\n",
-            skipEmptyLines: true,
             relaxColumnCount: true
         });
 
@@ -41,7 +42,11 @@ export const executeFileParse = async (s3Client: S3Client, bucket: string, key: 
         fileStream
             .pipe(parser)
             .on('data', (data) => {
-                console.log(`${bucket}: ${key}`, data);
+                sqsClient.send(new SendMessageCommand({
+                    QueueUrl: queueUrl,
+                    MessageBody: JSON.stringify(data),
+                    MessageGroupId: 'products'
+                }));
             })
             .on('end', () => {
                 console.log(`${bucket}: ${key} parsing completed`);

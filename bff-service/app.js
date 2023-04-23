@@ -4,6 +4,9 @@ import * as process from 'process';
 import productRouter from './routes/product.routes.js';
 import cartRouter from './routes/cart.routes.js';
 import router from './routes/common.routes.js';
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;

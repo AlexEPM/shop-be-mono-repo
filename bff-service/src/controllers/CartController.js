@@ -1,4 +1,4 @@
-import CartService from 'bff-service/src/services/CartService.js';
+import CartService from '../services/CartService.js';
 
 class CartController {
     async create(req, res) {

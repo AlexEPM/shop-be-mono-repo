@@ -1,7 +1,7 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config({path: '../.env'});
 
 const PRODUCTS_URL = process.env['products'];
 

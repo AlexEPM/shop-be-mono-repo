@@ -1,7 +1,7 @@
 import Router from 'express';
 import apicache from 'apicache';
 
-import ProductsController from 'bff-service/src/controllers/ProductController.js';
+import ProductsController from '../controllers/ProductController.js';
 
 const productRoutes = new Router();
 const cache = apicache.middleware;

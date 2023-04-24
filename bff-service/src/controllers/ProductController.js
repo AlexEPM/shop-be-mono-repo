@@ -1,4 +1,4 @@
-import ProductService from 'bff-service/src/services/ProductService.js';
+import ProductService from '../services/ProductService.js';
 
 class ProductController {
     async create(req, res) {

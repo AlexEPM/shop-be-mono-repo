@@ -1,5 +1,5 @@
 import Router from 'express';
-import CartController from '../controllers/CartController.js';
+import CartController from 'bff-service/src/controllers/CartController.js';
 
 const cartRoutes = new Router();
 

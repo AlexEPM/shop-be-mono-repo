@@ -1,4 +1,4 @@
-import ProductService from '../services/ProductService.js';
+import ProductService from 'bff-service/src/services/ProductService.js';
 
 class ProductController {
     async create(req, res) {
@@ -20,7 +20,7 @@ class ProductController {
 
     async getAll(req, res) {
         try {
-            const products = await ProductService.getAll(req);
+            const products = await ProductService.getAll();
             res.json(products);
         } catch (e) {
             console.log('some error', JSON.stringify(e));

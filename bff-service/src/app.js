@@ -1,9 +1,9 @@
 import express from 'express';
 import * as process from 'process';
 
-import productRouter from './routes/product.routes.js';
-import cartRouter from './routes/cart.routes.js';
-import router from './routes/common.routes.js';
+import productRouter from 'bff-service/src/routes/product.routes.js';
+import cartRouter from 'bff-service/src/routes/cart.routes.js';
+import router from 'bff-service/src/routes/common.routes.js';
 import dotenv from "dotenv";
 
 dotenv.config();
